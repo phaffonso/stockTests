@@ -1,4 +1,4 @@
-package testing.support;
+package testing.context.impl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,13 +7,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Cadastro {
+import testing.context.Cadastro;
+
+public class CadastroWeb implements Cadastro{
 
 	public boolean erro;
 	
-	WebDriver driver;
+	private WebDriver driver;
 	
-	public Cadastro(){
+	public CadastroWeb(){
 		System.out.println("starting this shit");
 		System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
 		//driver = new ChromeDriver();
