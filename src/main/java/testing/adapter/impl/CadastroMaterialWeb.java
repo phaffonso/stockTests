@@ -1,11 +1,7 @@
 package testing.adapter.impl;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import testing.adapter.CadastroMaterial;
 import testing.pageobject.TelaCadastro;
@@ -72,14 +68,10 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 		telaCadastro.getTxtSku().sendKeys(sku.toString());
 		telaCadastro.getSelUnidade().getOptions().get(1).click();
 		telaCadastro.getSelCategoria().getOptions().get(1).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		telaCadastro.getBtnCadastro().click();
-		return null;
+		
+		return telaCadastro.isSuccessMessageDisplayed();
 	}
 	
 	
