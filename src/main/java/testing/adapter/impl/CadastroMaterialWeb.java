@@ -8,6 +8,8 @@ import testing.pageobject.TelaCadastro;
 
 public class CadastroMaterialWeb implements CadastroMaterial{
 
+	private static final String PAGE_LOCATION = "http://localhost:8080/stock/cadastro";
+
 	public boolean erro;
 	
 	private WebDriver driver;
@@ -16,11 +18,11 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 	
 	public CadastroMaterialWeb(){
 		System.out.println("starting this shit");
-		System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
 		//driver = new ChromeDriver();
 		driver = new FirefoxDriver();
 		System.out.println("driver created");
-		driver.get("http://www.google.com");
+		driver.get(PAGE_LOCATION);
 		this.telaCadastro = new TelaCadastro(driver);
 	}
 	
