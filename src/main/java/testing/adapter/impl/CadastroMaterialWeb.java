@@ -1,4 +1,4 @@
-package testing.context.impl;
+package testing.adapter.impl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,29 +7,29 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import testing.context.Cadastro;
+import testing.adapter.CadastroMaterial;
+import testing.pageobject.TelaCadastro;
 
-public class CadastroWeb implements Cadastro{
+public class CadastroMaterialWeb implements CadastroMaterial{
 
 	public boolean erro;
 	
 	private WebDriver driver;
 	
-	public CadastroWeb(){
+	private TelaCadastro telaCadastro;
+	
+	public CadastroMaterialWeb(){
 		System.out.println("starting this shit");
 		System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
 		//driver = new ChromeDriver();
 		driver = new FirefoxDriver();
 		System.out.println("driver created");
 		driver.get("http://www.google.com");
-		System.out.println("after get");
+		this.telaCadastro = new TelaCadastro(driver);
 	}
 	
-	public void preenche(){
-		
-	}
 
-	public void envia() {
+	/*public void envia() {
 		System.out.println("commence envoyer");
 		
 		this.erro = true;
@@ -59,10 +59,27 @@ public class CadastroWeb implements Cadastro{
         System.out.println("Page title is: " + driver.getTitle());
 		
 		this.erro = false;
-	}
+	}*/
 	
-	public void finaliza(){
+
+	public void closeSession() {
 		driver.quit();
+	}
+
+	public Boolean register(Integer sku, Integer unit) {
+		telaCadastro.getTxtNome().sendKeys("Materia Prima teste 01");
+		telaCadastro.getTxtDescription().sendKeys("This is a description");
+		telaCadastro.getTxtSku().sendKeys(sku.toString());
+		telaCadastro.getSelUnidade().getOptions().get(1).click();
+		telaCadastro.getSelCategoria().getOptions().get(1).click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		telaCadastro.getBtnCadastro().click();
+		return null;
 	}
 	
 	
